@@ -1,0 +1,357 @@
+/*
+  ╔══════════════════════════════════════════════════════════════════╗
+  ║  Point do Hambúrguer - Cardápio Digita                           ║
+  ╠══════════════════════════════════════════════════════════════════╣
+  ║                    style.css                                     ║
+  ║  1. RESET UNIVERSAL E CONFIGURAÇÕES BASE                         ║
+  ║  2. CABEÇALHO (HEADER)                                           ║
+  ║  3. SEÇÕES E ITENS DO CARDÁPIO (MODELO MINIATURA NA DIREITA)     ║
+  ║  4. Dados de Entrega e formulário                                ║
+  ║  5. Botão de envio (whatsapp)                                    ║
+  ║  6. Footer                                                       ║
+  ╚══════════════════════════════════════════════════════════════════╝
+*/
+
+/* ==========================================================================
+    1. RESET UNIVERSAL E CONFIGURAÇÕES BASE
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+:root {
+    --cor-fundo: #121212;
+    /* Preto/Grafite profundo para o fundo */
+    --cor-card: #1e1e1e;
+    /* Cinza escuro para os blocos dos itens */
+    --cor-destaque: #ff4500;
+    /* Laranja avermelhado para botões e preços */
+    --cor-texto-principal: #ffffff;
+    --cor-texto-secundario: #b3b3b3;
+    --cor-sucesso: #2ecc71;
+    /* Verde para o status de aberto ou sucesso */
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    line-height: 1.6;
+    padding: 15px;
+    /* Evita que o conteúdo cole nas bordas físicas do celular */
+}
+
+/* Container principal para limitar o tamanho em telas grandes (Desktop) */
+main {
+    max-width: 600px;
+    margin: 0 auto;
+    /* Centraliza a página caso seja aberta no computador */
+}
+
+/* ==========================================================================
+    2. CABEÇALHO (HEADER)
+   ========================================================================== */
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding: 20px 10px 10px 10px;
+}
+
+header h1 {
+    color: var(--cor-destaque);
+    /* A cor vai no texto, deixando o topo limpo */
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.5px;
+}
+
+/* Estilização focada apenas no bloco de status */
+header .status-funcionamento {
+    display: inline-block;
+    /* Faz o fundo abraçar apenas o texto, não a tela toda */
+    background-color: #2a1a1a;
+    /* Um fundo vermelho escuro/sutil */
+    color: #ff4d4d;
+    /* Texto avermelhado porque o estabelecimento está Fechado */
+    padding: 6px 16px;
+    border-radius: 30px;
+    /* Bordas arredondadas estilo "tag/pílula" */
+    font-size: 0.85rem;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* Estilização focada apenas no endereço */
+header .endereco {
+    color: var(--cor-texto-secundario);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* ==========================================================================
+    3. SEÇÕES E ITENS DO CARDÁPIO (MODELO MINIATURA NA DIREITA)
+   ========================================================================== */
+section {
+    margin-bottom: 25px;
+}
+
+section h2 {
+    font-size: 1.2rem;
+    color: var(--cor-texto-principal);
+    border-left: 4px solid var(--cor-destaque);
+    padding-left: 10px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* O Card do Hamburguer */
+.item-cardapio {
+    background-color: var(--cor-card);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    /* Alinha o topo da imagem com o topo do texto */
+    gap: 12px;
+}
+
+/* Bloco da Esquerda: Textos e Controles */
+.item-conteudo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    /* Ocupa todo o espaço restante da esquerda */
+}
+
+.item-conteudo label {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.item-conteudo strong {
+    font-size: 1rem;
+    color: var(--cor-texto-principal);
+    margin-bottom: 2px;
+}
+
+.item-conteudo .descricao {
+    font-size: 0.8rem;
+    color: var(--cor-texto-secundario);
+    line-height: 1.4;
+}
+
+/* A Imagem na Direita */
+.item-cardapio img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    /* Impede que o flexbox esmague a imagem em telas muito pequenas */
+    border: 1px solid #2d2d2d;
+}
+
+/* Controles de Quantidade (+ e -) posicionados abaixo da descrição */
+.controle-qtd {
+    display: flex;
+    align-items: center;
+    background-color: var(--cor-fundo);
+    border-radius: 6px;
+    border: 1px solid #333;
+    width: fit-content;
+    /* O bloco só ocupa o tamanho dos botões */
+    margin-top: 4px;
+}
+
+.controle-qtd button {
+    background: none;
+    border: none;
+    color: var(--cor-texto-principal);
+    font-size: 1.2rem;
+    font-weight: bold;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+
+.controle-qtd button:active {
+    background-color: #222;
+    /* Feedback visual ao clicar no celular */
+}
+
+.controle-qtd input[type="number"] {
+    background: none;
+    border: none;
+    color: var(--cor-texto-principal);
+    width: 35px;
+    height: 36px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: bold;
+
+    /* Correção do aviso do VS Code: */
+    -moz-appearance: textfield;
+    /* Para navegadores baseados em Firefox antigo */
+    appearance: textfield;
+    /* Propriedade padrão universal exigida */
+}
+
+/* Remove setas nativas dos navegadores */
+.controle-qtd input[type="number"]::-webkit-outer-spin-button,
+.controle-qtd input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ==========================================================================
+    4. DADOS DE ENTREGA E FORMULÁRIO
+   ========================================================================== */
+.campo-cadastro {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.campo-cadastro label {
+    color: var(--cor-texto-principal);
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+
+/* Customização dos Inputs de Texto e Textarea */
+.campo-cadastro input,
+.campo-cadastro textarea {
+    background-color: var(--cor-card);
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 12px;
+    color: var(--cor-texto-principal);
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+}
+
+/* Efeito luminoso laranja ao clicar para digitar */
+.campo-cadastro input:focus,
+.campo-cadastro textarea:focus {
+    border-color: var(--cor-destaque);
+}
+
+.campo-cadastro textarea {
+    resize: vertical;
+    min-height: 80px;
+    font-family: inherit;
+}
+
+/* Área de Forma de Pagamento */
+fieldset {
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 25px;
+    margin-top: 20px;
+}
+
+fieldset legend {
+    color: var(--cor-texto-principal);
+    font-weight: bold;
+    padding: 0 8px;
+    font-size: 1rem;
+}
+
+.opcao-radio {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 0;
+    cursor: pointer;
+}
+
+/* Alvo de clique maior para o botão de rádio no celular */
+.opcao-radio input[type="radio"] {
+    accent-color: var(--cor-destaque);
+    /* Força a bolinha nativa a ficar laranja */
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.opcao-radio label {
+    color: var(--cor-texto-principal);
+    font-size: 1rem;
+    cursor: pointer;
+    flex: 1;
+    /* Permite clicar em qualquer lugar da linha para selecionar */
+}
+
+/* ==========================================================================
+    5. BOTÃO DE ENVIO (WHATSAPP)
+   ========================================================================== */
+.container-enviar {
+    margin-top: 25px;
+    margin-bottom: 50px;
+}
+
+#btn-enviar {
+    background-color: #25D366;
+    /* Verde oficial do WhatsApp */
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    width: 100%;
+    padding: 16px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.2);
+}
+
+/* Feedback tátil imediato no celular ao pressionar */
+#btn-enviar:active {
+    background-color: #1ebd59;
+    transform: scale(0.98);
+}
+
+/* ==========================================================================
+    6. RODAPÉ (FOOTER)
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 25px 15px;
+    margin-top: 20px;
+    border-top: 1px solid #1a1a1a;
+    /* Linha extremamente sutil para separar do fundo */
+}
+
+footer p {
+    color: var(--cor-texto-secundario);
+    font-size: 0.75rem;
+    /* Tamanho reduzido para não competir com o texto do formulário */
+    opacity: 0.5;
+    /* Deixa o texto fosco e discreto */
+    letter-spacing: 0.3px;
+}
+
+footer .desenvolvedor strong {
+    color: #F5A623;
+    font-weight: 'Orbitron', monospace;
+}

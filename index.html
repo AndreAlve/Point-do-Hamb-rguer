@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Point do Hambúrguer</title>
+    <meta name="description" content="Faça seu pedido online no Point do Hambúrguer. Receba em casa com agilidade.">
+    <link rel="icon" type="image/png" href="favicon/favicon.ico">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Point do Hambúrguer - Cardápio Digital</h1>
+        <p class="status-funcionamento">🔴 Fechado - Abre às 18h</p>
+        <p class="endereco">📍 Praça Dr. José Ferreira de Lima - Quiosque</p>
+    </header>
+
+    <main>
+        <form id="form-pedido">
+
+            <section aria-labelledby="titulo-hamburgueres">
+                <h2 id="titulo-hamburgueres" class="titulo">🍔Hambúrgueres</h2>
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-bovino">
+                            <strong>Bovino - R$ 14,00</strong>
+                            <span class="descricao">Pão bola, alface, tomate, carne bovina, ovo, queijo muçarela, cream
+                                cheese
+                                e molho especial.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos">-</button>
+                            <input type="number" id="qtd-bovino" name="bovino" min="0" value="0" readonly>
+                            <button type="button" class="btn-mais">+</button>
+                        </div>
+                    </div>
+                    <img src="img/bovino.png" alt="Hambúrguer bovino">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-calabresa">
+                            <strong>Calabresa - R$ 14,00</strong>
+                            <span class="descricao">Pão bola, alface, tomate, calabresa, ovo, queijo muçarela, cream
+                                cheese e molho especial.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos">-</button>
+                            <input type="number" id="qtd-calabresa" name="calabresa" min="0" value="0" readonly>
+                            <button type="button" class="btn-mais">+</button>
+                        </div>
+                    </div>
+                    <img src="img/calabresa.png" alt="Hambúrguer Calabresa">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-sol">
+                            <strong>Carne de sol - R$ 15,00</strong>
+                            <span class="descricao">Pão bola, alface, tomate, carne sol, ovo, queijo muçarela, cream
+                                cheese e molho especial.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos">-</button>
+                            <input type="number" id="qtd-sol" name="sol" min="0" value="0" readonly>
+                            <button type="button" class="btn-mais">+</button>
+                        </div>
+                    </div>
+                    <img src="img/sol.png" alt="Hambúrguer sol">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-queijo">
+                            <strong>Queijo - R$ 15,00</strong>
+                            <span class="descricao">Pão bola, alface, tomate, queijo coalho, ovo, queijo muçarela, cream
+                                cheese e molho
+                                especial.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos">-</button>
+                            <input type="number" id="qtd-queijo" name="queijo" min="0" value="0" readonly>
+                            <button type="button" class="btn-mais">+</button>
+                        </div>
+                    </div>
+                    <img src="img/bovino.png" alt="Hambúrguer queijo">
+                </div>
+            </section>
+
+            <section aria-labelledby="titulo-pastel">
+
+                <h2 id="titulo-pastel">Pastel</h2>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-pastel-frango">
+                            <strong>Pastel de Frango - R$ 7,00</strong>
+                            <span class="descricao">Massa, repolho, tomate, peito de frango desfiado, cebola,
+                                milho-verde ou
+                                ervilha.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos">-</button>
+                            <input type="number" id="qtd-pastel-frango" name="pastel_frango" min="0" value="0" readonly>
+                            <button type="button" class="btn-mais">+</button>
+                        </div>
+                    </div>
+                    <img src="img/Pastel frango.png" alt="pastel">
+                </div>
+            </section>
+
+            <section aria-labelledby="titulo-cachorro">
+                <h2 id="titulo-cachorro">🌭Cachorro Quente</h2>
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-cachorro-frango">
+                            <strong>Frango - R$ 8,00</strong>
+                            <span class="descricao">Pão, salsicha, peito de frango desfiado, batata palha, ketchup,
+                                mostarda, maionese, milho e ervilha.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos">-</button>
+                            <input type="number" id="qtd-cachorro-frango" name="cachorro_frango" min="0" value="0"
+                                readonly>
+                            <button type="button" class="btn-mais">+</button>
+                        </div>
+                    </div>
+                    <img src="img/cacho-frango.png" alt="cachorro-quente">
+                </div>
+            </section>
+
+            <section aria-labelledby="titulo-porcoes">
+                <h2 id="titulo-porcoes">🍟Porções</h2>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-batata-frita">
+                            <strong>Batata Frita - R$ 10,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos">-</button>
+                            <input type="number" id="qtd-batata-frita" name="batata_frita" min="0" value="0" readonly>
+                            <button type="button" class="btn-mais">+</button>
+                        </div>
+                    </div>
+                    <img src="img/batata.png" alt="batata-frita">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-batata-cheddar">
+                            <strong>Batata Frita com Cheddar e Calabesa/Carne de Sol - R$ 20,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos">-</button>
+                            <input type="number" id="qtd-batata-cheddar" name="batata_cheddar" min="0" value="0"
+                                readonly>
+                            <button type="button" class="btn-mais">+</button>
+                        </div>
+                    </div>
+                    <img src="img/batata-cheddar.png" alt="batata_cheddar">
+                </div>
+
+            </section>
+
+            <section aria-labelledby="titulo-bebidas">
+                <h2 id="titulo-bebidas">🥤Bebidas</h2>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-coca-litro">
+                            <strong>Coca-Cola 1 Litro - R$ 10,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos">-</button>
+                            <input type="number" id="qtd-coca-litro" name="coca_litro" min="0" value="0" readonly>
+                            <button type="button" class="btn-mais">+</button>
+                        </div>
+                    </div>
+                    <img src="img/coca_litro.png" alt="coca_litro">
+                </div>
+            </section>
+
+            <section aria-labelledby="titulo-entrega">
+                <h2 id="titulo-entrega">🛒Dados para Entrega</h2>
+
+                <div class="campo-cadastro">
+                    <label for="txt-nome">Nome Completo:</label>
+                    <input type="text" id="txt-nome" name="nome" placeholder="Digite seu Nome..." required>
+                </div>
+
+                <div class="campo-cadastro">
+                    <label for="txt-tel">Telefone para Contato:</label>
+                    <input type="tel" id="txt-tel" name="telefone" placeholder="Digite seu Telefone..." required>
+                </div>
+
+                <div class="campo-cadastro">
+                    <label for="txt-rua">Rua:</label>
+                    <input type="text" id="txt-rua" name="rua" placeholder="Digite sua Rua..." required>
+                </div>
+
+                <div class="campo-cadastro">
+                    <label for="txt-bairro">Bairro:</label>
+                    <input type="text" id="txt-bairro" name="bairro" placeholder="Digite seu Bairro..." required>
+                </div>
+
+                <div class="campo-cadastro">
+                    <label for="num-casa">Número da Casa:</label>
+                    <input type="number" id="num-casa" name="numero_casa" placeholder="Nº" required>
+                </div>
+
+                <div class="campo-cadastro">
+                    <label for="txt-referencia">Ponto de Referência:</label>
+                    <textarea id="txt-referencia" name="referencia"
+                        placeholder="Ex: Próximo à igreja matriz..."></textarea>
+                </div>
+
+                <fieldset>
+                    <legend>Forma de Pagamento</legend>
+                    <div class="opcao-radio">
+                        <input type="radio" id="pag-pix" name="forma_pagamento" value="pix" checked>
+                        <label for="pag-pix">Pix</label>
+                    </div>
+                    <div class="opcao-radio">
+                        <input type="radio" id="pag-cartao" name="forma_pagamento" value="cartao">
+                        <label for="pag-cartao">Cartão</label>
+                    </div>
+                    <div class="opcao-radio">
+                        <input type="radio" id="pag-dinheiro" name="forma_pagamento" value="dinheiro">
+                        <label for="pag-dinheiro">Dinheiro</label>
+                    </div>
+                </fieldset>
+            </section>
+            <div class="container-enviar">
+                <button type="submit" id="btn-enviar">🚀 Enviar Pedido para o WhatsApp</button>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Point do Hambúrguer - Todos os direitos reservados.</p>
+        <p class="desenvolvedor">Desenvolvido por <strong>Σ Sigma Orbitek</strong></p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
