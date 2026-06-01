@@ -61,7 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const itensCardapio = document.querySelectorAll('.item-cardapio');
 
-    const atualizarTotalPedido = () => {
+// sourcery skip: avoid-function-declarations-in-blocks
+    function atualizarTotalPedido() {
         let total = 0;
         const inputsPreco = document.querySelectorAll('input[data-preco]');
 
@@ -74,12 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         btnEnviar.textContent = total > 0
             ? `🚀 Enviar Pedido para o WhatsApp (Total: R$ ${total.toFixed(2).replace('.', ',')})`
             : '🚀 Enviar Pedido para o WhatsApp';
-    };
-
-    const mostrarCardapioOriginal = mostrarCardapio;
-    mostrarCardapio = (modo) => {
-        mostrarCardapioOriginal(modo);
-    };
+    }
 
     itensCardapio.forEach(item => {
         const btnMenos = item.querySelector('.btn-menos');
