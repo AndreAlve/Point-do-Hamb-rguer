@@ -1,40 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Point do Hambúrguer</title>
     <meta name="description" content="Faça seu pedido online no Point do Hambúrguer. Receba em casa com agilidade.">
-    <link rel="icon" type="image/png" href="favicon/favicon.ico">
+
+    <link rel="icon" href="favicon/favicon.ico">
     <link rel="manifest" href="favicon/site.webmanifest">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-    <header>
+    <header id="cabecalho-principal" class="oculto">
         <h1>Point do Hambúrguer - Cardápio Digital</h1>
         <p class="status-funcionamento">🔴 Fechado - Abre às 18h</p>
         <p class="endereco">📍 Praça Dr. José Ferreira de Lima - Quiosque</p>
     </header>
 
-    <main>
-        <form id="form-pedido">
+    <section id="tela-boas-vindas">
+        <div class="boas-vindas-container">
+            <article class="boas-vindas-box">
+                <img src="favicon/android-chrome-512x512.png" alt="Logo do Point do Hambúrguer" class="bv-logo">
 
+                <h1 class="bv-titulo">
+                    POINT DO <br>
+                    HAMBÚRGUER
+                </h1>
+
+                <img src="img/bovino.png" alt="Hambúrguer bovino" class="bv-hamburguer" aria-hidden="true">
+
+                <p class="bv-subtitulo">Fome chegou?</p>
+                <p class="bv-descricao">Peça seu lanche favorito em poucos cliques e receba onde estiver.</p>
+
+                <ul class="bv-features" aria-label="Benefícios do nosso atendimento">
+                    <li class="bv-feature">
+                        <span class="bv-icon" aria-hidden="true">🍔</span>
+                        <span>Lanches Artesanais</span>
+                    </li>
+                    <li class="bv-feature">
+                        <span class="bv-icon" aria-hidden="true">🚚</span>
+                        <span>Entrega Rápida</span>
+                    </li>
+                    <li class="bv-feature">
+                        <span class="bv-icon" aria-hidden="true">⭐</span>
+                        <span>Qualidade Garantida</span>
+                    </li>
+                </ul>
+
+                <div class="bv-botoes">
+                    <button class="bv-btn delivery" type="button" id="btn-escolha-delivery">
+                        <span aria-hidden="true">🛵</span> Quero Delivery
+                    </button>
+
+                    <button class="bv-btn quiosque" type="button" id="btn-escolha-quiosque">
+                        <span aria-hidden="true">🏠</span> Estou no Quiosque
+                    </button>
+                </div>
+
+                <footer class="bv-rodape-box">
+                    <address>
+                        📍 Praça Dr. José Ferreira de Lima - Quiosque<br>
+                        <span>Entrega e retirada disponíveis em Altinho - PE</span>
+                    </address>
+                </footer>
+            </article>
+        </div>
+    </section>
+
+    <main id="cardapio-principal" class="oculto">
+        <form id="form-pedido">
             <section aria-labelledby="titulo-hamburgueres">
-                <h2 id="titulo-hamburgueres" class="titulo">🍔Hambúrgueres</h2>
+                <h2 id="titulo-hamburgueres" class="titulo">🍔 Hambúrgueres</h2>
+
                 <div class="item-cardapio">
                     <div class="item-conteudo">
                         <label for="qtd-bovino">
                             <strong>Bovino - R$ 14,00</strong>
-                            <span class="descricao">Pão bola, alface, tomate, carne bovina, ovo, queijo muçarela, cream
-                                cheese
-                                e molho especial.</span>
+                            <span class="descricao">Pão bola, alface, tomate, carne bovina, ovo, queijo muçarela, cream cheese e molho especial.</span>
                         </label>
                         <div class="controle-qtd">
-                            <button type="button" class="btn-menos">-</button>
-                            <input type="number" id="qtd-bovino" name="bovino" min="0" value="0" readonly>
-                            <button type="button" class="btn-mais">+</button>
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-bovino" name="bovino" min="0" value="0" readonly data-preco="14.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                     </div>
                     <img src="img/bovino.png" alt="Hambúrguer bovino">
@@ -44,96 +91,88 @@
                     <div class="item-conteudo">
                         <label for="qtd-calabresa">
                             <strong>Calabresa - R$ 14,00</strong>
-                            <span class="descricao">Pão bola, alface, tomate, calabresa, ovo, queijo muçarela, cream
-                                cheese e molho especial.</span>
+                            <span class="descricao">Pão bola, alface, tomate, calabresa, ovo, queijo muçarela, cream cheese e molho especial.</span>
                         </label>
                         <div class="controle-qtd">
-                            <button type="button" class="btn-menos">-</button>
-                            <input type="number" id="qtd-calabresa" name="calabresa" min="0" value="0" readonly>
-                            <button type="button" class="btn-mais">+</button>
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-calabresa" name="calabresa" min="0" value="0" readonly data-preco="14.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                     </div>
-                    <img src="img/calabresa.png" alt="Hambúrguer Calabresa">
+                    <img src="img/calabresa.png" alt="Hambúrguer de calabresa">
                 </div>
 
                 <div class="item-cardapio">
                     <div class="item-conteudo">
                         <label for="qtd-sol">
                             <strong>Carne de sol - R$ 15,00</strong>
-                            <span class="descricao">Pão bola, alface, tomate, carne sol, ovo, queijo muçarela, cream
-                                cheese e molho especial.</span>
+                            <span class="descricao">Pão bola, alface, tomate, carne de sol, ovo, queijo muçarela, cream cheese e molho especial.</span>
                         </label>
                         <div class="controle-qtd">
-                            <button type="button" class="btn-menos">-</button>
-                            <input type="number" id="qtd-sol" name="sol" min="0" value="0" readonly>
-                            <button type="button" class="btn-mais">+</button>
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-sol" name="sol" min="0" value="0" readonly data-preco="15.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                     </div>
-                    <img src="img/sol.png" alt="Hambúrguer sol">
+                    <img src="img/sol.png" alt="Hambúrguer de carne de sol">
                 </div>
 
                 <div class="item-cardapio">
                     <div class="item-conteudo">
                         <label for="qtd-queijo">
                             <strong>Queijo - R$ 15,00</strong>
-                            <span class="descricao">Pão bola, alface, tomate, queijo coalho, ovo, queijo muçarela, cream
-                                cheese e molho
-                                especial.</span>
+                            <span class="descricao">Pão bola, alface, tomate, queijo coalho, ovo, queijo muçarela, cream cheese e molho especial.</span>
                         </label>
                         <div class="controle-qtd">
-                            <button type="button" class="btn-menos">-</button>
-                            <input type="number" id="qtd-queijo" name="queijo" min="0" value="0" readonly>
-                            <button type="button" class="btn-mais">+</button>
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-queijo" name="queijo" min="0" value="0" readonly data-preco="15.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                     </div>
-                    <img src="img/bovino.png" alt="Hambúrguer queijo">
+                    <img src="img/bovino.png" alt="Hambúrguer de queijo">
                 </div>
             </section>
 
             <section aria-labelledby="titulo-pastel">
-
-                <h2 id="titulo-pastel">Pastel</h2>
+                <h2 id="titulo-pastel" class="titulo">🥟 Pastel</h2>
 
                 <div class="item-cardapio">
                     <div class="item-conteudo">
                         <label for="qtd-pastel-frango">
                             <strong>Pastel de Frango - R$ 7,00</strong>
-                            <span class="descricao">Massa, repolho, tomate, peito de frango desfiado, cebola,
-                                milho-verde ou
-                                ervilha.</span>
+                            <span class="descricao">Massa, repolho, tomate, peito de frango desfiado, cebola, milho-verde ou ervilha.</span>
                         </label>
                         <div class="controle-qtd">
-                            <button type="button" class="btn-menos">-</button>
-                            <input type="number" id="qtd-pastel-frango" name="pastel_frango" min="0" value="0" readonly>
-                            <button type="button" class="btn-mais">+</button>
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-pastel-frango" name="pastel_frango" min="0" value="0" readonly data-preco="7.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                     </div>
-                    <img src="img/Pastel frango.png" alt="pastel">
+                    <img src="img/Pastel frango.png" alt="Pastel de frango">
                 </div>
             </section>
 
             <section aria-labelledby="titulo-cachorro">
-                <h2 id="titulo-cachorro">🌭Cachorro Quente</h2>
+                <h2 id="titulo-cachorro" class="titulo">🌭 Cachorro Quente</h2>
+
                 <div class="item-cardapio">
                     <div class="item-conteudo">
                         <label for="qtd-cachorro-frango">
                             <strong>Frango - R$ 8,00</strong>
-                            <span class="descricao">Pão, salsicha, peito de frango desfiado, batata palha, ketchup,
-                                mostarda, maionese, milho e ervilha.</span>
+                            <span class="descricao">Pão, salsicha, peito de frango desfiado, batata palha, ketchup, mostarda, maionese, milho e ervilha.</span>
                         </label>
                         <div class="controle-qtd">
-                            <button type="button" class="btn-menos">-</button>
-                            <input type="number" id="qtd-cachorro-frango" name="cachorro_frango" min="0" value="0"
-                                readonly>
-                            <button type="button" class="btn-mais">+</button>
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-cachorro-frango" name="cachorro_frango" min="0" value="0" readonly data-preco="8.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                     </div>
-                    <img src="img/cacho-frango.png" alt="cachorro-quente">
+                    <img src="img/cacho-frango.png" alt="Cachorro quente de frango">
                 </div>
             </section>
 
             <section aria-labelledby="titulo-porcoes">
-                <h2 id="titulo-porcoes">🍟Porções</h2>
+                <h2 id="titulo-porcoes" class="titulo">🍟 Porções</h2>
 
                 <div class="item-cardapio">
                     <div class="item-conteudo">
@@ -141,33 +180,31 @@
                             <strong>Batata Frita - R$ 10,00</strong>
                         </label>
                         <div class="controle-qtd">
-                            <button type="button" class="btn-menos">-</button>
-                            <input type="number" id="qtd-batata-frita" name="batata_frita" min="0" value="0" readonly>
-                            <button type="button" class="btn-mais">+</button>
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-batata-frita" name="batata_frita" min="0" value="0" readonly data-preco="10.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                     </div>
-                    <img src="img/batata.png" alt="batata-frita">
+                    <img src="img/batata.png" alt="Batata frita">
                 </div>
 
                 <div class="item-cardapio">
                     <div class="item-conteudo">
                         <label for="qtd-batata-cheddar">
-                            <strong>Batata Frita com Cheddar e Calabesa/Carne de Sol - R$ 20,00</strong>
+                            <strong>Batata Frita com Cheddar e Calabresa/Carne de Sol - R$ 20,00</strong>
                         </label>
                         <div class="controle-qtd">
-                            <button type="button" class="btn-menos">-</button>
-                            <input type="number" id="qtd-batata-cheddar" name="batata_cheddar" min="0" value="0"
-                                readonly>
-                            <button type="button" class="btn-mais">+</button>
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-batata-cheddar" name="batata_cheddar" min="0" value="0" readonly data-preco="20.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                     </div>
-                    <img src="img/batata-cheddar.png" alt="batata_cheddar">
+                    <img src="img/batata-cheddar.png" alt="Batata frita com cheddar">
                 </div>
-
             </section>
 
             <section aria-labelledby="titulo-bebidas">
-                <h2 id="titulo-bebidas">🥤Bebidas</h2>
+                <h2 id="titulo-bebidas" class="titulo">🥤 Bebidas</h2>
 
                 <div class="item-cardapio">
                     <div class="item-conteudo">
@@ -175,65 +212,70 @@
                             <strong>Coca-Cola 1 Litro - R$ 10,00</strong>
                         </label>
                         <div class="controle-qtd">
-                            <button type="button" class="btn-menos">-</button>
-                            <input type="number" id="qtd-coca-litro" name="coca_litro" min="0" value="0" readonly>
-                            <button type="button" class="btn-mais">+</button>
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-coca-litro" name="coca_litro" min="0" value="0" readonly data-preco="10.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                     </div>
-                    <img src="img/coca_litro.png" alt="coca_litro">
+                    <img src="img/coca_litro.png" alt="Coca-Cola 1 litro">
                 </div>
             </section>
 
-            <section aria-labelledby="titulo-entrega">
-                <h2 id="titulo-entrega">🛒Dados para Entrega</h2>
+            <section aria-labelledby="titulo-dados-cliente">
+                <h2 id="titulo-dados-cliente" class="titulo">👤 Dados do Pedido</h2>
 
                 <div class="campo-cadastro">
                     <label for="txt-nome">Nome Completo:</label>
-                    <input type="text" id="txt-nome" name="nome" placeholder="Digite seu Nome..." required>
+                    <input type="text" id="txt-nome" name="nome" placeholder="Digite seu nome..." required>
                 </div>
 
                 <div class="campo-cadastro">
                     <label for="txt-tel">Telefone para Contato:</label>
-                    <input type="tel" id="txt-tel" name="telefone" placeholder="Digite seu Telefone..." required>
+                    <input type="tel" id="txt-tel" name="telefone" placeholder="(81) 99999-9999" required>
                 </div>
 
-                <div class="campo-cadastro">
-                    <label for="txt-rua">Rua:</label>
-                    <input type="text" id="txt-rua" name="rua" placeholder="Digite sua Rua..." required>
-                </div>
+                <div class="container-endereco-delivery">
+                    <div class="campo-cadastro">
+                        <label for="txt-rua">Rua:</label>
+                        <input type="text" id="txt-rua" name="rua" placeholder="Digite sua rua...">
+                    </div>
 
-                <div class="campo-cadastro">
-                    <label for="txt-bairro">Bairro:</label>
-                    <input type="text" id="txt-bairro" name="bairro" placeholder="Digite seu Bairro..." required>
-                </div>
+                    <div class="campo-cadastro">
+                        <label for="txt-bairro">Bairro:</label>
+                        <input type="text" id="txt-bairro" name="bairro" placeholder="Digite seu bairro...">
+                    </div>
 
-                <div class="campo-cadastro">
-                    <label for="num-casa">Número da Casa:</label>
-                    <input type="number" id="num-casa" name="numero_casa" placeholder="Nº" required>
-                </div>
+                    <div class="campo-cadastro">
+                        <label for="num-casa">Número da Casa:</label>
+                        <input type="number" id="num-casa" name="numero_casa" placeholder="Nº">
+                    </div>
 
-                <div class="campo-cadastro">
-                    <label for="txt-referencia">Ponto de Referência:</label>
-                    <textarea id="txt-referencia" name="referencia"
-                        placeholder="Ex: Próximo à igreja matriz..."></textarea>
+                    <div class="campo-cadastro">
+                        <label for="txt-referencia">Ponto de Referência:</label>
+                        <textarea id="txt-referencia" name="referencia" placeholder="Ex: Próximo à igreja matriz..."></textarea>
+                    </div>
                 </div>
 
                 <fieldset>
                     <legend>Forma de Pagamento</legend>
+
                     <div class="opcao-radio">
-                        <input type="radio" id="pag-pix" name="forma_pagamento" value="pix" checked>
+                        <input type="radio" id="pag-pix" name="forma_pagamento" value="Pix" checked>
                         <label for="pag-pix">Pix</label>
                     </div>
+
                     <div class="opcao-radio">
-                        <input type="radio" id="pag-cartao" name="forma_pagamento" value="cartao">
+                        <input type="radio" id="pag-cartao" name="forma_pagamento" value="Cartão">
                         <label for="pag-cartao">Cartão</label>
                     </div>
+
                     <div class="opcao-radio">
-                        <input type="radio" id="pag-dinheiro" name="forma_pagamento" value="dinheiro">
+                        <input type="radio" id="pag-dinheiro" name="forma_pagamento" value="Dinheiro">
                         <label for="pag-dinheiro">Dinheiro</label>
                     </div>
                 </fieldset>
             </section>
+
             <div class="container-enviar">
                 <button type="submit" id="btn-enviar">🚀 Enviar Pedido para o WhatsApp</button>
             </div>
@@ -246,7 +288,5 @@
     </footer>
 
     <script src="script.js"></script>
-
 </body>
-
 </html>

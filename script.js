@@ -1,68 +1,174 @@
-function verificarFuncionamento() {
-    const agora = new Date();
-    const hora = agora.getHours();
-    const minutos = agora.getMinutes();
-    
-    // Transforma o horário atual em um número de 4 dígitos fácil de comparar (Ex: 18:05 vira 1805)
-    const horarioFormatado = (hora * 100) + minutos;
-
-    // Defina os horários limite (Ex: 18h00 às 23h30)
-    const horarioAbertura = 1800; 
-    const horarioFechamento = 2330;
-
-    const statusElemento = document.querySelector('.status-funcionamento');
+document.addEventListener('DOMContentLoaded', () => {
+    const telaBoasVindas = document.getElementById('tela-boas-vindas');
+    const cabecalhoPrincipal = document.getElementById('cabecalho-principal');
+    const cardapioPrincipal = document.getElementById('cardapio-principal');
+    const formPedido = document.getElementById('form-pedido');
     const btnEnviar = document.getElementById('btn-enviar');
 
-    if (horarioFormatado >= horarioAbertura && horarioFormatado <= horarioFechamento) {
-        statusElemento.textContent = "🟢 Aberto - Faça seu pedido!";
-        statusElemento.classList.remove('fechado'); // Caso use classes no CSS
-        btnEnviar.disabled = false;
-        btnEnviar.style.opacity = "1";
-        btnEnviar.style.cursor = "pointer";
-    } else {
-        statusElemento.textContent = "🔴 Fechado - Abre às 18h";
-        
-        // Desativa o botão para impedir que o cliente monte o pedido e envie com o quiosque fechado
-        btnEnviar.disabled = true;
-        btnEnviar.style.opacity = "0.5";
-        btnEnviar.style.cursor = "not-allowed";
+    const btnDelivery = document.getElementById('btn-escolha-delivery');
+    const btnQuiosque = document.getElementById('btn-escolha-quiosque');
+
+    const camposEndereco = document.querySelectorAll(
+        '.container-endereco-delivery input, .container-endereco-delivery textarea'
+    );
+
+    const inputTelefone = document.getElementById('txt-tel');
+
+    let modoAtivo = 'delivery';
+
+    function setCamposEnderecoAtivos(ativo) {
+        camposEndereco.forEach(campo => {
+            campo.required = ativo;
+            campo.disabled = !ativo;
+        });
+
+        const containerEndereco = document.querySelector('.container-endereco-delivery');
+        if (containerEndereco) {
+            containerEndereco.style.display = ativo ? '' : 'none';
+        }
     }
-}
 
-// Executa a checagem ao carregar a página
-verificarFuncionamento();
+    function mostrarCardapio(modo) {
+        modoAtivo = modo;
 
+        telaBoasVindas.classList.add('oculto');
+        cabecalhoPrincipal.classList.remove('oculto');
+        cardapioPrincipal.classList.remove('oculto');
 
+        document.body.classList.toggle('modo-quiosque', modo === 'quiosque');
+        setCamposEnderecoAtivos(modo === 'delivery');
 
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
 
-// Aguarda o DOM estar completamente carregado
-document.addEventListener('DOMContentLoaded', () => {
-    const formPedido = document.getElementById('form-pedido');
+    btnDelivery.addEventListener('click', () => mostrarCardapio('delivery'));
+    btnQuiosque.addEventListener('click', () => mostrarCardapio('quiosque'));
 
-    // 1. GERENCIAMENTO DE QUANTIDADES (Event Delegation)
-    formPedido.addEventListener('click', (event) => {
-        const alvo = event.target;
+    inputTelefone.addEventListener('input', (e) => {
+        let valor = e.target.value.replace(/\D/g, '').slice(0, 11);
 
-        // Verifica se o clique foi em um botão de mais ou menos
-        if (alvo.classList.contains('btn-mais') || alvo.classList.contains('btn-menos')) {
-            // Encontra o container de controle mais próximo do botão clicado
-            const controleQtd = alvo.closest('.controle-qtd');
-            // Encontra o input de número dentro desse container específico
-            const inputQtd = controleQtd.querySelector('input[type="number"]');
-            
-            let quantidadeAtual = parseInt(inputQtd.value) || 0;
+        if (valor.length > 10) {
+            valor = valor.replace(/^(\d{2})(\d{5})(\d{4})$/, '($1) $2-$3');
+        } else if (valor.length > 6) {
+            valor = valor.replace(/^(\d{2})(\d{4,5})(\d{0,4})$/, '($1) $2-$3');
+        } else if (valor.length > 2) {
+            valor = valor.replace(/^(\d{2})(\d+)/, '($1) $2');
+        }
 
-            if (alvo.classList.contains('btn-mais')) {
-                quantidadeAtual++;
-            } else if (alvo.classList.contains('btn-menos')) {
-                // Impede que a quantidade fique menor que zero
-                if (quantidadeAtual > 0) {
-                    quantidadeAtual--;
-                }
+        e.target.value = valor;
+    });
+
+    const itensCardapio = document.querySelectorAll('.item-cardapio');
+
+    function atualizarTotalPedido() {
+        let total = 0;
+        const inputsPreco = document.querySelectorAll('input[data-preco]');
+
+        inputsPreco.forEach(input => {
+            const qtd = parseInt(input.value, 10) || 0;
+            const preco = parseFloat(input.dataset.preco) || 0;
+            total += qtd * preco;
+        });
+
+        btnEnviar.textContent = total > 0
+            ? `🚀 Enviar Pedido para o WhatsApp (Total: R$ ${total.toFixed(2).replace('.', ',')})`
+            : '🚀 Enviar Pedido para o WhatsApp';
+    }
+
+    itensCardapio.forEach(item => {
+        const btnMenos = item.querySelector('.btn-menos');
+        const btnMais = item.querySelector('.btn-mais');
+        const inputQtd = item.querySelector('input[type="number"]');
+
+        btnMenos.addEventListener('click', () => {
+            const qtdAtual = parseInt(inputQtd.value, 10) || 0;
+            if (qtdAtual > 0) {
+                inputQtd.value = qtdAtual - 1;
+                atualizarTotalPedido();
+            }
+        });
+
+        btnMais.addEventListener('click', () => {
+            const qtdAtual = parseInt(inputQtd.value, 10) || 0;
+            inputQtd.value = qtdAtual + 1;
+            atualizarTotalPedido();
+        });
+    });
+
+    formPedido.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const nomeCliente = document.getElementById('txt-nome').value.trim();
+        const telCliente = document.getElementById('txt-tel').value.trim();
+        const formaPagamento = document.querySelector('input[name="forma_pagamento"]:checked')?.value || 'Não informado';
+
+        let itensPedidos = '';
+        let totalFinal = 0;
+        const inputsPreco = document.querySelectorAll('input[data-preco]');
+
+        inputsPreco.forEach(input => {
+            const qtd = parseInt(input.value, 10) || 0;
+
+            if (qtd > 0) {
+                const preco = parseFloat(input.dataset.preco) || 0;
+                const produto = input.closest('.item-cardapio')?.querySelector('strong')?.textContent || 'Produto';
+                const nomeProduto = produto.split(' - ')[0];
+                const subtotalItem = qtd * preco;
+
+                itensPedidos += `*${qtd}x* ${nomeProduto} (R$ ${subtotalItem.toFixed(2).replace('.', ',')})\n`;
+                totalFinal += subtotalItem;
+            }
+        });
+
+        if (totalFinal === 0) {
+            alert('Adicione pelo menos um item ao pedido.');
+            return;
+        }
+
+        if (!nomeCliente || !telCliente) {
+            alert('Preencha seu nome e telefone.');
+            return;
+        }
+
+        let mensagemWhatsApp = `🍔 *NOVO PEDIDO - POINT DO HAMBÚRGUER* 🍔\n`;
+        mensagemWhatsApp += `----------------------------------------\n`;
+        mensagemWhatsApp += `📌 *MODO:* ${modoAtivo === 'quiosque' ? '🏠 NO QUIOSQUE / BALCÃO' : '🛵 QUERO DELIVERY'}\n\n`;
+        mensagemWhatsApp += `👤 *Cliente:* ${nomeCliente}\n`;
+        mensagemWhatsApp += `📞 *Telefone:* ${telCliente}\n`;
+        mensagemWhatsApp += `----------------------------------------\n`;
+        mensagemWhatsApp += `🛒 *ITENS DO PEDIDO:*\n${itensPedidos}\n`;
+        mensagemWhatsApp += `----------------------------------------\n`;
+
+        if (modoAtivo === 'delivery') {
+            const rua = document.getElementById('txt-rua').value.trim();
+            const bairro = document.getElementById('txt-bairro').value.trim();
+            const numero = document.getElementById('num-casa').value.trim();
+            const referencia = document.getElementById('txt-referencia').value.trim();
+
+            if (!rua || !bairro || !numero) {
+                alert('Preencha rua, bairro e número da casa para delivery.');
+                return;
             }
 
-            // Atualiza o valor na tela
-            inputQtd.value = quantidadeAtual;
+            mensagemWhatsApp += `📍 *ENDEREÇO DE ENTREGA:*\n`;
+            mensagemWhatsApp += `*Rua:* ${rua}, Nº ${numero}\n`;
+            mensagemWhatsApp += `*Bairro:* ${bairro}\n`;
+
+            if (referencia) {
+                mensagemWhatsApp += `*Ref:* ${referencia}\n`;
+            }
+
+            mensagemWhatsApp += `----------------------------------------\n`;
         }
+
+        mensagemWhatsApp += `💳 *Forma de Pagamento:* ${formaPagamento}\n`;
+        mensagemWhatsApp += `💰 *TOTAL DO PEDIDO:* *R$ ${totalFinal.toFixed(2).replace('.', ',')}*\n`;
+
+        const numeroTelefoneEmpresa = '5581995666335'; // troque pelo número real
+        const urlFinal = `https://wa.me/${numeroTelefoneEmpresa}?text=${encodeURIComponent(mensagemWhatsApp)}`;
+
+        window.open(urlFinal, '_blank');
     });
+
+    atualizarTotalPedido();
 });
