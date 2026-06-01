@@ -276,6 +276,22 @@ section h2,
     align-self: center;
 }
 
+.observacao-item {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #333;
+    background: #1e1e1e;
+    color: #fff;
+    resize: vertical;
+    min-height: 70px;
+}
+
+.oculto {
+    display: none !important;
+}
+
 .controle-qtd {
     display: flex;
     align-items: center;
@@ -348,11 +364,13 @@ section h2,
     transition: border-color 0.2s;
     width: 100%;
 }
+
 /* Remove setas nativas dos navegadores */
 .controle-qtd input[type="number"]::-webkit-outer-spin-button,
 .controle-qtd input[type="number"]::-webkit-inner-spin-button {
     -webkit-appearance: none;
-    appearance: none;           /* Propriedade padrão que remove o aviso */
+    appearance: none;
+    /* Propriedade padrão que remove o aviso */
     margin: 0;
 }
 
@@ -453,6 +471,7 @@ footer .desenvolvedor strong {
 }
 
 @media (max-width: 550px) {
+
     /* Altera o container do item de linha para coluna */
     .item-cardapio {
         flex-direction: column !important;
@@ -464,7 +483,8 @@ footer .desenvolvedor strong {
     /* Dá margem para a imagem não colar no texto */
     .item-cardapio img {
         margin-bottom: 10px;
-        width: 120px; /* Ajusta o tamanho se necessário */
+        width: 120px;
+        /* Ajusta o tamanho se necessário */
         height: 120px;
     }
 

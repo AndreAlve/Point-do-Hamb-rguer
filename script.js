@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const formPedido = document.getElementById('form-pedido');
     const btnEnviar = document.getElementById('btn-enviar');
 
-
     const btnDelivery = document.getElementById('btn-escolha-delivery');
     const btnQuiosque = document.getElementById('btn-escolha-quiosque');
 
@@ -14,6 +13,14 @@ document.addEventListener('DOMContentLoaded', () => {
     );
 
     const inputTelefone = document.getElementById('txt-tel');
+    const radioDinheiro = document.getElementById('pag-dinheiro');
+    const radioPix = document.getElementById('pag-pix');
+    const radioCartao = document.getElementById('pag-cartao');
+
+    const containerTroco = document.getElementById('container-troco');
+    const inputTroco = document.getElementById('txt-troco');
+
+    const itensCardapio = document.querySelectorAll('.item-cardapio');
 
     let modoAtivo = 'delivery';
 
@@ -27,7 +34,18 @@ document.addEventListener('DOMContentLoaded', () => {
         if (containerEndereco) {
             containerEndereco.style.display = ativo ? '' : 'none';
         }
-    }
+    };
+
+    const controlarCampoTroco = () => {
+        if (!containerTroco || !inputTroco || !radioDinheiro) return;
+
+        if (radioDinheiro.checked) {
+            containerTroco.classList.remove('oculto');
+        } else {
+            containerTroco.classList.add('oculto');
+            inputTroco.value = '';
+        }
+    };
 
     const mostrarCardapio = (modo) => {
         modoAtivo = modo;
@@ -40,12 +58,12 @@ document.addEventListener('DOMContentLoaded', () => {
         setCamposEnderecoAtivos(modo === 'delivery');
 
         window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    };
 
-    btnDelivery.addEventListener('click', () => mostrarCardapio('delivery'));
-    btnQuiosque.addEventListener('click', () => mostrarCardapio('quiosque'));
+    btnDelivery?.addEventListener('click', () => mostrarCardapio('delivery'));
+    btnQuiosque?.addEventListener('click', () => mostrarCardapio('quiosque'));
 
-    inputTelefone.addEventListener('input', (e) => {
+    inputTelefone?.addEventListener('input', (e) => {
         let valor = e.target.value.replace(/\D/g, '').slice(0, 11);
 
         if (valor.length > 10) {
@@ -59,9 +77,10 @@ document.addEventListener('DOMContentLoaded', () => {
         e.target.value = valor;
     });
 
-    const itensCardapio = document.querySelectorAll('.item-cardapio');
+    radioDinheiro?.addEventListener('change', controlarCampoTroco);
+    radioPix?.addEventListener('change', controlarCampoTroco);
+    radioCartao?.addEventListener('change', controlarCampoTroco);
 
-// sourcery skip: avoid-function-declarations-in-blocks
     function atualizarTotalPedido() {
         let total = 0;
         const inputsPreco = document.querySelectorAll('input[data-preco]');
@@ -81,29 +100,48 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnMenos = item.querySelector('.btn-menos');
         const btnMais = item.querySelector('.btn-mais');
         const inputQtd = item.querySelector('input[type="number"]');
+        const textareaObs = item.querySelector('.observacao-item');
 
-        btnMenos.addEventListener('click', () => {
+        const atualizarObservacao = () => {
+            if (!textareaObs || !inputQtd) return;
+
+            const qtd = parseInt(inputQtd.value, 10) || 0;
+
+            if (qtd > 0) {
+                textareaObs.classList.remove('oculto');
+            } else {
+                textareaObs.classList.add('oculto');
+                textareaObs.value = '';
+            }
+        };
+
+        btnMenos?.addEventListener('click', () => {
             const qtdAtual = parseInt(inputQtd.value, 10) || 0;
+
             if (qtdAtual > 0) {
                 inputQtd.value = qtdAtual - 1;
                 atualizarTotalPedido();
+                atualizarObservacao();
             }
         });
 
-        btnMais.addEventListener('click', () => {
+        btnMais?.addEventListener('click', () => {
             const qtdAtual = parseInt(inputQtd.value, 10) || 0;
             inputQtd.value = qtdAtual + 1;
             atualizarTotalPedido();
+            atualizarObservacao();
         });
+
+        atualizarObservacao();
     });
 
-    formPedido.addEventListener('submit', (e) => {
+    formPedido?.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const nomeCliente = document.getElementById('txt-nome').value.trim();
-        const telCliente = document.getElementById('txt-tel').value.trim();
-        const observacao = document.getElementById('txt-observacao').value.trim();
-        const formaPagamento = document.querySelector('input[name="forma_pagamento"]:checked')?.value || 'Não informado';
+        const nomeCliente = document.getElementById('txt-nome')?.value.trim() || '';
+        const telCliente = document.getElementById('txt-tel')?.value.trim() || '';
+        const formaPagamento =
+            document.querySelector('input[name="forma_pagamento"]:checked')?.value || 'Não informado';
 
         let itensPedidos = '';
         let totalFinal = 0;
@@ -114,11 +152,23 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (qtd > 0) {
                 const preco = parseFloat(input.dataset.preco) || 0;
-                const produto = input.closest('.item-cardapio')?.querySelector('strong')?.textContent || 'Produto';
+                const itemCardapio = input.closest('.item-cardapio');
+                const produto = itemCardapio?.querySelector('strong')?.textContent || 'Produto';
                 const nomeProduto = produto.split(' - ')[0];
                 const subtotalItem = qtd * preco;
 
                 itensPedidos += `*${qtd}x* ${nomeProduto} (R$ ${subtotalItem.toFixed(2).replace('.', ',')})\n`;
+
+                const observacaoItem = itemCardapio
+                    ?.querySelector('.observacao-item')
+                    ?.value
+                    .trim();
+
+                if (observacaoItem) {
+                    itensPedidos += `📝 Obs: ${observacaoItem}\n`;
+                }
+
+                itensPedidos += '\n';
                 totalFinal += subtotalItem;
             }
         });
@@ -139,14 +189,14 @@ document.addEventListener('DOMContentLoaded', () => {
         mensagemWhatsApp += `👤 *Cliente:* ${nomeCliente}\n`;
         mensagemWhatsApp += `📞 *Telefone:* ${telCliente}\n`;
         mensagemWhatsApp += `----------------------------------------\n`;
-        mensagemWhatsApp += `🛒 *ITENS DO PEDIDO:*\n${itensPedidos}\n`;
+        mensagemWhatsApp += `🛒 *ITENS DO PEDIDO:*\n${itensPedidos}`;
         mensagemWhatsApp += `----------------------------------------\n`;
 
         if (modoAtivo === 'delivery') {
-            const rua = document.getElementById('txt-rua').value.trim();
-            const bairro = document.getElementById('txt-bairro').value.trim();
-            const numero = document.getElementById('num-casa').value.trim();
-            const referencia = document.getElementById('txt-referencia').value.trim();
+            const rua = document.getElementById('txt-rua')?.value.trim() || '';
+            const bairro = document.getElementById('txt-bairro')?.value.trim() || '';
+            const numero = document.getElementById('num-casa')?.value.trim() || '';
+            const referencia = document.getElementById('txt-referencia')?.value.trim() || '';
 
             if (!rua || !bairro || !numero) {
                 alert('Preencha rua, bairro e número da casa para delivery.');
@@ -164,20 +214,23 @@ document.addEventListener('DOMContentLoaded', () => {
             mensagemWhatsApp += `----------------------------------------\n`;
         }
 
-        if (observacao) {
-            mensagemWhatsApp += `📝 *OBSERVAÇÕES:*\n`;
-            mensagemWhatsApp += `${observacao}\n`;
-            mensagemWhatsApp += `----------------------------------------\n`;
+        if (formaPagamento.toLowerCase() === 'dinheiro') {
+            const troco = inputTroco?.value.trim() || '';
+            if (troco) {
+                mensagemWhatsApp += `💵 *Troco para:* R$ ${troco}\n`;
+                mensagemWhatsApp += `----------------------------------------\n`;
+            }
         }
 
         mensagemWhatsApp += `💳 *Forma de Pagamento:* ${formaPagamento}\n`;
         mensagemWhatsApp += `💰 *TOTAL DO PEDIDO:* *R$ ${totalFinal.toFixed(2).replace('.', ',')}*\n`;
 
-        const numeroTelefoneEmpresa = '5581995666335'; // troque pelo número real
+        const numeroTelefoneEmpresa = '5581995666335';
         const urlFinal = `https://wa.me/${numeroTelefoneEmpresa}?text=${encodeURIComponent(mensagemWhatsApp)}`;
 
         window.open(urlFinal, '_blank');
     });
 
+    controlarCampoTroco();
     atualizarTotalPedido();
 });
