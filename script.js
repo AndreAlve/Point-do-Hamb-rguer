@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const formPedido = document.getElementById('form-pedido');
     const btnEnviar = document.getElementById('btn-enviar');
 
+
     const btnDelivery = document.getElementById('btn-escolha-delivery');
     const btnQuiosque = document.getElementById('btn-escolha-quiosque');
 
@@ -16,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let modoAtivo = 'delivery';
 
-    function setCamposEnderecoAtivos(ativo) {
+    const setCamposEnderecoAtivos = (ativo) => {
         camposEndereco.forEach(campo => {
             campo.required = ativo;
             campo.disabled = !ativo;
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function mostrarCardapio(modo) {
+    const mostrarCardapio = (modo) => {
         modoAtivo = modo;
 
         telaBoasVindas.classList.add('oculto');
@@ -60,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const itensCardapio = document.querySelectorAll('.item-cardapio');
 
-    function atualizarTotalPedido() {
+    const atualizarTotalPedido = () => {
         let total = 0;
         const inputsPreco = document.querySelectorAll('input[data-preco]');
 
@@ -73,7 +74,12 @@ document.addEventListener('DOMContentLoaded', () => {
         btnEnviar.textContent = total > 0
             ? `🚀 Enviar Pedido para o WhatsApp (Total: R$ ${total.toFixed(2).replace('.', ',')})`
             : '🚀 Enviar Pedido para o WhatsApp';
-    }
+    };
+
+    const mostrarCardapioOriginal = mostrarCardapio;
+    mostrarCardapio = (modo) => {
+        mostrarCardapioOriginal(modo);
+    };
 
     itensCardapio.forEach(item => {
         const btnMenos = item.querySelector('.btn-menos');
@@ -100,6 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const nomeCliente = document.getElementById('txt-nome').value.trim();
         const telCliente = document.getElementById('txt-tel').value.trim();
+        const observacao = document.getElementById('txt-observacao').value.trim();
         const formaPagamento = document.querySelector('input[name="forma_pagamento"]:checked')?.value || 'Não informado';
 
         let itensPedidos = '';
@@ -158,6 +165,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 mensagemWhatsApp += `*Ref:* ${referencia}\n`;
             }
 
+            mensagemWhatsApp += `----------------------------------------\n`;
+        }
+
+        if (observacao) {
+            mensagemWhatsApp += `📝 *OBSERVAÇÕES:*\n`;
+            mensagemWhatsApp += `${observacao}\n`;
             mensagemWhatsApp += `----------------------------------------\n`;
         }
 

@@ -452,6 +452,34 @@ footer .desenvolvedor strong {
     color: #F5A623;
 }
 
+@media (max-width: 550px) {
+    /* Altera o container do item de linha para coluna */
+    .item-cardapio {
+        flex-direction: column !important;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+    }
+
+    /* Dá margem para a imagem não colar no texto */
+    .item-cardapio img {
+        margin-bottom: 10px;
+        width: 120px; /* Ajusta o tamanho se necessário */
+        height: 120px;
+    }
+
+    /* Força o bloco de texto a ocupar a largura total horizontal */
+    .item-conteudo {
+        width: 100% !important;
+    }
+
+    /* Centraliza os botões de quantidade abaixo do texto */
+    .controle-qtd {
+        margin-top: 10px;
+        justify-content: center;
+    }
+}
+
 @media (max-width: 480px) {
     .bv-titulo {
         font-size: 1.8rem;
