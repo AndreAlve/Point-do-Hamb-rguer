@@ -465,11 +465,6 @@ footer p {
     letter-spacing: 0.3px;
 }
 
-footer .desenvolvedor strong {
-    font-family: monospace;
-    color: #F5A623;
-}
-
 @media (max-width: 550px) {
 
     /* Altera o container do item de linha para coluna */
