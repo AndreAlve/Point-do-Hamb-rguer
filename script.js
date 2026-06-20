@@ -228,8 +228,42 @@ document.addEventListener('DOMContentLoaded', () => {
         const numeroTelefoneEmpresa = '5581995666335';
         const urlFinal = `https://wa.me/${numeroTelefoneEmpresa}?text=${encodeURIComponent(mensagemWhatsApp)}`;
 
-        window.open(urlFinal, '_blank');
+        window.location.href = urlFinal;
     });
+
+    const status = document.querySelector('.status-funcionamento');
+
+    const hora = new Date().getHours();
+
+    if (hora >= 18 && hora < 23) {
+        status.textContent = '🟢 Aberto';
+        status.style.color = '#25D366';
+    } else {
+        status.textContent = '🔴 Fechado - Abre às 18h';
+    }
+
+    function atualizarCarrinho() {
+        let totalItens = 0;
+        let valorTotal = 0;
+
+        document.querySelectorAll('input[type="number"][data-preco]')
+            .forEach(input => {
+
+                const qtd = parseInt(input.value) || 0;
+                const preco = parseFloat(input.dataset.preco);
+
+                totalItens += qtd;
+                valorTotal += qtd * preco;
+            });
+
+        document.getElementById('total-itens').textContent = totalItens;
+
+        document.getElementById('valor-total').textContent =
+            valorTotal.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+    }
 
     controlarCampoTroco();
     atualizarTotalPedido();

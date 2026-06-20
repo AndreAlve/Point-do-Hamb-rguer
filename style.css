@@ -543,3 +543,26 @@ footer .desenvolvedor strong {
         padding: 15px 10px;
     }
 }
+
+#resumo-pedido {
+    position: sticky;
+    top: 10px;
+    background: #1e1e1e;
+    border: 2px solid #ff4500;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 20px;
+    z-index: 50;
+}
+
+#lista-pedido {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+#total-pedido {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #25D366;
+}
