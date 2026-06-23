@@ -29,7 +29,7 @@
                     HAMBÚRGUER
                 </h1>
 
-                <img src="img/bovino.png" alt="Hambúrguer bovino" class="bv-hamburguer" aria-hidden="true">
+                <img src="img/bovino.02.png" alt="Hambúrguer bovino" class="bv-hamburguer" aria-hidden="true">
 
                 <p class="bv-subtitulo">Fome chegou?</p>
                 <p class="bv-descricao">Peça seu lanche favorito em poucos cliques e receba onde estiver.</p>
@@ -142,8 +142,45 @@
                         </div>
                         <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
                     </div>
-                    <img src="img/bovino.png" alt="Hambúrguer de queijo">
+                    <img src="img/Queijo.png" alt="Hambúrguer de queijo">
                 </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-bacon">
+                            <strong>X Bacon - R$ 17,00</strong>
+                            <span class="descricao">Pão bola, alface, tomate, Bacon, ovo, queijo muçarela, cream
+                                cheese e molho especial.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-bacon" name="bacon" min="0" value="0" readonly
+                                data-preco="17.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/X Bacon.png" alt="Hambúrguer de bacon">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-frango">
+                            <strong>X Frango - R$ 17,00</strong>
+                            <span class="descricao">Pão bola, alface, tomate, filé de frango, ovo, queijo muçarela, cream
+                                cheese e molho especial.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-frango" name="bacon" min="0" value="0" readonly
+                                data-preco="17.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/X Frango.png" alt="Hambúrguer de frango">
+                </div>
+
             </section>
 
             <section aria-labelledby="titulo-pastel">
@@ -152,7 +189,7 @@
                 <div class="item-cardapio">
                     <div class="item-conteudo">
                         <label for="qtd-pastel-frango">
-                            <strong>Pastel de Frango - R$ 7,00</strong>
+                            <strong>Frango - R$ 7,00</strong>
                             <span class="descricao">Massa, repolho, tomate, peito de frango desfiado, cebola,
                                 milho-verde ou ervilha.</span>
                         </label>
@@ -165,6 +202,42 @@
                         <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
                     </div>
                     <img src="img/Pastel frango.png" alt="Pastel de frango">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-pastel-Pizza">
+                            <strong>Pizza - R$ 7,00</strong>
+                            <span class="descricao">Massa, repolho, tomate, queijo muçarela ralado, presunto ralado, Orégano, cebola, milho-verde ou ervilha.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-pastel-pizza" name="pastel_pizza" min="0" value="0" readonly
+                                data-preco="7.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/pastel de pizza.png" alt="Pastel de pizza">
+                </div>
+
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-pastel-queijo">
+                            <strong>Queijo - R$ 7,00</strong>
+                            <span class="descricao">Massa, repolho, tomate, queijo muçarela ralado, cebola,
+                                milho-verde ou ervilha.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-pastel-frango" name="pastel_queijo" min="0" value="0" readonly
+                                data-preco="7.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/pastel de Queijo.png" alt="Pastel de queijo">
                 </div>
             </section>
 
@@ -187,6 +260,24 @@
                         <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
                     </div>
                     <img src="img/cacho-frango.png" alt="Cachorro quente de frango">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-cachorro-Carne">
+                            <strong>Carne - R$ 8,00</strong>
+                            <span class="descricao">Pão, salsicha, carne moída, batata palha, ketchup,
+                                mostarda, maionese, milho e ervilha.</span>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-cachorro-frango" name="cachorro_carne" min="0" value="0"
+                                readonly data-preco="8.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/cachorro-Carne.png" alt="Cachorro quente de carne">
                 </div>
             </section>
 
@@ -224,6 +315,38 @@
                     </div>
                     <img src="img/batata-cheddar.png" alt="Batata frita com cheddar">
                 </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-mini-pasteis">
+                            <strong>Mini pasteis - R$ 13,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-mini-pasteis" name="mini_pasteis" min="0" value="0"
+                                readonly data-preco="13.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/Mini pasteis.png" alt="mini_pasteis">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-mini-coxinhas">
+                            <strong>Mini coxinhas - R$ 15,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-mini-coxinhas" name="mini_coxinhas" min="0" value="0"
+                                readonly data-preco="15.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/Mini coxinhas.png" alt="mini_coxinhas">
+                </div>
             </section>
 
             <section aria-labelledby="titulo-bebidas">
@@ -258,7 +381,55 @@
                         </div>
                         <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
                     </div>
-                    <img src="img/guarana.png" alt="Guaraná 1 litro">
+                    <img src="img/guarana.png" alt="Guarana 1 litro">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-coca-lata">
+                            <strong>Coca-Cola lata - R$ 6,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-coca-lata" name="coca_lata" min="0" value="0" readonly
+                                data-preco="6.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/coca-lata.png" alt="Coca-Cola lata">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-fanta-lata">
+                            <strong>Fanta lata - R$ 6,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-fanta-lata" name="fanta_lata" min="0" value="0" readonly
+                                data-preco="6.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/fanta lata.webp" alt="fanta-lata">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-Guarana-lata">
+                            <strong>Guarana lata - R$ 6,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-Guarana-lata" name="Guarana_lata" min="0" value="0" readonly
+                                data-preco="6.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/Guarana lata.webp" alt="Guarana lata">
                 </div>
 
                 <h2 id="titulo-sucos" class="titulo">🧃 Sucos</h2>
@@ -294,38 +465,107 @@
                     <img src="img/Del Valle Uva.png" alt="Del Valle Uva">
                 </div>
 
-                <h2 id="titulo-sobremesas" class="titulo">🍨 Sobremesas</h2>
-
                 <div class="item-cardapio">
                     <div class="item-conteudo">
-                        <label for="qtd-Brownie">
-                            <strong>Brownie - R$ 10,00</strong>
+                        <label for="qtd-skika">
+                            <strong>Skika - R$ 5,00</strong>
                         </label>
                         <div class="controle-qtd">
                             <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
-                            <input type="number" id="qtd-Brownie" name="Brownie" min="0" value="0" readonly
-                                data-preco="10.00">
+                            <input type="number" id="qtd-skika" name="skika" min="0" value="0" readonly
+                                data-preco="5.00">
                             <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                         <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
                     </div>
-                    <img src="img/Brownie.jpg" alt="Brownie">
+                    <img src="img/Skika.webp" alt="skika">
+                </div>
+
+                <h2 id="titulo-sucos" class="titulo">✨ Bebidas Leves</h2>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-h2o">
+                            <strong>H2O - R$ 3,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-h2o" name="h2o" min="0" value="0" readonly
+                                data-preco="3.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/H2o.jpg" alt="h2o">
+                </div>
+
+                <h2 id="titulo-sucos" class="titulo">💧 Águas</h2>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-aqua-sem">
+                            <strong>Água sem gás - R$ 3,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-aqua-sem" name="aqua-sem" min="0" value="0" readonly
+                                data-preco="3.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/agua-mineral1.jpg" alt="aqua-sem">
                 </div>
 
                 <div class="item-cardapio">
                     <div class="item-conteudo">
-                        <label for="qtd-Mousse">
-                            <strong>Mousse de maracujá - R$ 10,00</strong>
+                        <label for="qtd-aqua-gas">
+                            <strong>Água com gás- R$ 3,00</strong>
                         </label>
                         <div class="controle-qtd">
                             <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
-                            <input type="number" id="qtd-Mousse" name="Mousse" min="0" value="0" readonly
-                                data-preco="10.00">
+                            <input type="number" id="qtd-aqua-gas" name="aqua-gas" min="0" value="0" readonly
+                                data-preco="3.00">
                             <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                         <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
                     </div>
-                    <img src="img/mousse-de-maracuja.png" alt="Mousse">
+                    <img src="img/agua-mineral1.jpg" alt="aqua-gas">
+                </div>
+
+
+                <h2 id="titulo-sobremesas" class="titulo">🍨 Sobremesas</h2>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-Bolo">
+                            <strong>Bolo de Pote - R$ 12,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-Bolo" name="Bolo" min="0" value="0" readonly
+                                data-preco="12.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/bolo de pote.jpg" alt="Bolo de Pote">
+                </div>
+
+                <div class="item-cardapio">
+                    <div class="item-conteudo">
+                        <label for="qtd-Brigadeiro ">
+                            <strong>Docinho Sortido (unidade) — R$ 2,00</strong>
+                        </label>
+                        <div class="controle-qtd">
+                            <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                            <input type="number" id="qtd-Brigadeiro " name="Brigadeiro" min="0" value="0" readonly
+                                data-preco="2.00">
+                            <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
+                        </div>
+                        <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
+                    </div>
+                    <img src="img/docinho sortido (unidade).webp" alt="docinho sortido">
                 </div>
 
                 <section aria-labelledby="titulo-combos">
