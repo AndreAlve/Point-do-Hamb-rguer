@@ -96,6 +96,40 @@ document.addEventListener('DOMContentLoaded', () => {
             : '🚀 Enviar Pedido para o WhatsApp';
     }
 
+    // Preenche #total-itens e #valor-total (usados no #resumo-pedido do CSS).
+    // Antes essa função existia mas nunca era chamada — o resumo nunca atualizava.
+    function atualizarCarrinho() {
+        let totalItens = 0;
+        let valorTotal = 0;
+
+        document.querySelectorAll('input[type="number"][data-preco]')
+            .forEach(input => {
+                const qtd = parseInt(input.value, 10) || 0;
+                const preco = parseFloat(input.dataset.preco) || 0;
+
+                totalItens += qtd;
+                valorTotal += qtd * preco;
+            });
+
+        const elTotalItens = document.getElementById('total-itens');
+        const elValorTotal = document.getElementById('valor-total');
+
+        if (elTotalItens) elTotalItens.textContent = totalItens;
+
+        if (elValorTotal) {
+            elValorTotal.textContent = valorTotal.toLocaleString('pt-BR', {
+                style: 'currency',
+                currency: 'BRL'
+            });
+        }
+    }
+
+    // Centraliza tudo que precisa rodar sempre que a quantidade de um item muda.
+    function atualizarResumoCompleto() {
+        atualizarTotalPedido();
+        atualizarCarrinho();
+    }
+
     itensCardapio.forEach(item => {
         const btnMenos = item.querySelector('.btn-menos');
         const btnMais = item.querySelector('.btn-mais');
@@ -120,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (qtdAtual > 0) {
                 inputQtd.value = qtdAtual - 1;
-                atualizarTotalPedido();
+                atualizarResumoCompleto();
                 atualizarObservacao();
             }
         });
@@ -128,7 +162,13 @@ document.addEventListener('DOMContentLoaded', () => {
         btnMais?.addEventListener('click', () => {
             const qtdAtual = parseInt(inputQtd.value, 10) || 0;
             inputQtd.value = qtdAtual + 1;
-            atualizarTotalPedido();
+            atualizarResumoCompleto();
+            atualizarObservacao();
+        });
+
+        // Caso o usuário digite a quantidade direto no input, em vez de usar +/-.
+        inputQtd?.addEventListener('input', () => {
+            atualizarResumoCompleto();
             atualizarObservacao();
         });
 
@@ -233,38 +273,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const status = document.querySelector('.status-funcionamento');
 
-    const hora = new Date().getHours();
+    const agora = new Date();
+    const diaSemana = agora.getDay(); // 0=domingo, 1=segunda, 2=terça, 3=quarta...
+    const hora = agora.getHours();
 
-    if (hora >= 18 && hora < 23) {
-        status.textContent = '🟢 Aberto';
-        status.style.color = '#25D366';
-    } else {
-        status.textContent = '🔴 Fechado - Abre às 18h';
-    }
+    // Dias em que a loja não abre. Ajuste esta lista se os dias mudarem.
+    const diasFechados = [2]; // terça e quarta
 
-    function atualizarCarrinho() {
-        let totalItens = 0;
-        let valorTotal = 0;
-
-        document.querySelectorAll('input[type="number"][data-preco]')
-            .forEach(input => {
-
-                const qtd = parseInt(input.value) || 0;
-                const preco = parseFloat(input.dataset.preco);
-
-                totalItens += qtd;
-                valorTotal += qtd * preco;
-            });
-
-        document.getElementById('total-itens').textContent = totalItens;
-
-        document.getElementById('valor-total').textContent =
-            valorTotal.toLocaleString('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            });
+    if (status) {
+        if (diasFechados.includes(diaSemana)) {
+            status.textContent = '🔴 Fechado hoje - Abrimos quinta';
+        } else if (hora >= 18 && hora < 23) {
+            status.textContent = '🟢 Aberto';
+            status.style.color = '#25D366';
+        } else {
+            status.textContent = '🔴 Fechado - Abre às 18h';
+        }
     }
 
     controlarCampoTroco();
-    atualizarTotalPedido();
+    atualizarResumoCompleto();
 });
