@@ -167,7 +167,8 @@
                     <div class="item-conteudo">
                         <label for="qtd-frango">
                             <strong>X Frango - R$ 17,00</strong>
-                            <span class="descricao">Pão bola, alface, tomate, filé de frango, ovo, queijo muçarela, cream
+                            <span class="descricao">Pão bola, alface, tomate, filé de frango, ovo, queijo muçarela,
+                                cream
                                 cheese e molho especial.</span>
                         </label>
                         <div class="controle-qtd">
@@ -208,7 +209,8 @@
                     <div class="item-conteudo">
                         <label for="qtd-pastel-Pizza">
                             <strong>Pizza - R$ 7,00</strong>
-                            <span class="descricao">Massa, repolho, tomate, queijo muçarela ralado, presunto ralado, Orégano, cebola, milho-verde ou ervilha.</span>
+                            <span class="descricao">Massa, repolho, tomate, queijo muçarela ralado, presunto ralado,
+                                Orégano, cebola, milho-verde ou ervilha.</span>
                         </label>
                         <div class="controle-qtd">
                             <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
@@ -323,8 +325,8 @@
                         </label>
                         <div class="controle-qtd">
                             <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
-                            <input type="number" id="qtd-mini-pasteis" name="mini_pasteis" min="0" value="0"
-                                readonly data-preco="13.00">
+                            <input type="number" id="qtd-mini-pasteis" name="mini_pasteis" min="0" value="0" readonly
+                                data-preco="13.00">
                             <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                         <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
@@ -339,8 +341,8 @@
                         </label>
                         <div class="controle-qtd">
                             <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
-                            <input type="number" id="qtd-mini-coxinhas" name="mini_coxinhas" min="0" value="0"
-                                readonly data-preco="15.00">
+                            <input type="number" id="qtd-mini-coxinhas" name="mini_coxinhas" min="0" value="0" readonly
+                                data-preco="15.00">
                             <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                         <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
@@ -490,8 +492,7 @@
                         </label>
                         <div class="controle-qtd">
                             <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
-                            <input type="number" id="qtd-h2o" name="h2o" min="0" value="0" readonly
-                                data-preco="3.00">
+                            <input type="number" id="qtd-h2o" name="h2o" min="0" value="0" readonly data-preco="3.00">
                             <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                         </div>
                         <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
@@ -581,16 +582,17 @@
                                     Bovino + Batata Frita + Refrigerante.
                                 </span>
                             </label>
-
                             <div class="controle-qtd">
-                                <button type="button" class="btn-menos">-</button>
-
-                                <input type="number" id="qtd-combo-bovino" min="0" value="0" readonly
+                                <button type="button" class="btn-menos" aria-label="Diminuir quantidade">-</button>
+                                <input type="number" id="qtd-combo-bovino" name="combo-bovino" min="0" value="0" readonly
                                     data-preco="22.00">
-
-                                <button type="button" class="btn-mais">+</button>
+                                <button type="button" class="btn-mais" aria-label="Aumentar quantidade">+</button>
                             </div>
+                            <textarea class="observacao-item oculto" placeholder="Observação deste item..."></textarea>
                         </div>
+                        <img src="img/Combo Bovino.png" alt="Combo Bovino">
+                    </div>
+                    </div>
                     </div>
                 </section>
             </section>
@@ -663,9 +665,23 @@
     </main>
 
     <footer>
-        <p>&copy; 2026 Point do Hambúrguer - Todos os direitos reservados.</p>
-        <p class="desenvolvedor">Desenvolvido por <strong> <a href="https://sigmaorbitek.vercel.app/"
-                    target="_blank" rel="noopener noreferrer">Σ Sigma Orbitek</a></strong></p>
+        <p class="ft-copy">
+            &copy; 2026 Point do Hambúrguer - Todos os direitos reservados.
+        </p>
+
+        <p class="ft-copy">
+            Altinho • Pernambuco
+        </p>
+
+        <p class="desenvolvedor">
+            Desenvolvido com 💜 por
+
+            <a href="https://sigmaorbitek.vercel.app/" target="_blank">
+
+                Σ Sigma Orbitek
+
+            </a>
+        </p>
     </footer>
 
     <script src="script.js"></script>
